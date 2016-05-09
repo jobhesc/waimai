@@ -337,6 +337,29 @@ class CreateMainTable extends Migration
                 ->onUpdate('no action');
         });
 
+        //请求源信息
+        Schema::create('req_sources', function(Blueprint $table){
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('app_name')->nullable();
+            $table->string('app_version')->nullable();
+            $table->string('client_type')->nullable();
+            $table->string('model')->nullable();
+            $table->string('os')->nullable();
+            $table->string('screen')->nullable();
+            $table->string('did')->nullable();
+            $table->string('city_id')->nullable();
+            $table->string('dt')->nullable();
+            $table->string('tz')->nullable();
+            $table->string('channel')->nullable();
+            $table->string('loc')->nullable();
+            $table->string('net')->nullable();
+            $table->string('token');
+            $table->string('ip')->nullable();
+            $table->string('user_agent')->nullable();
+
+            $table->index('token');
+        });
     }
 
     /**
@@ -346,18 +369,20 @@ class CreateMainTable extends Migration
      */
     public function down()
     {
-        Schema::drop('coupons');
-        Schema::drop('addresses');
-        Schema::drop('shop_categories');
-        Schema::drop('shops');
-        Schema::drop('shop_category_crosses');
-        Schema::drop('product_categories');
-        Schema::drop('products');
-        Schema::drop('orders');
-        Schema::drop('order_lines');
-        Schema::drop('order_procedure');
-        Schema::drop('comments');
-        Schema::drop('comment_products');
-        Schema::drop('accounts');
+        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('comment_products');
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('order_procedure');
+        Schema::dropIfExists('order_lines');
+        Schema::dropIfExists('orders');
+        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_categories');
+        Schema::dropIfExists('shop_images');
+        Schema::dropIfExists('shop_category_crosses');
+        Schema::dropIfExists('shops');
+        Schema::dropIfExists('shop_categories');
+        Schema::dropIfExists('req_sources');
+        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('addresses');
     }
 }

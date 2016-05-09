@@ -12,14 +12,12 @@
 */
 
 
-Route::group(['prefix'=>'/app/v1'], function(){
+Route::group(['prefix'=>'/app/v2', 'middleware'=>'request_auth'], function(){
 
     //不需要登录验证的接口
 //    Route::get('')
 
-    Route::get('/', function(){
+    Route::match(['get', 'post'],'/sys/config', function(){
         return view('welcome');
     });
 });
-
-Auth::check();
