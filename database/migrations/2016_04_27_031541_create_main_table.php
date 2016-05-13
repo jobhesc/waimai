@@ -86,6 +86,7 @@ class CreateMainTable extends Migration
             $table->double('location_lat')->nullable();
             $table->double('location_lng')->nullable();
             $table->string('location_address', 1000)->nullable();
+            $table->string('location_name')->nullable();
 
             $table->string('work_time')->nullable();    //营业时间
             $table->integer('min_price');               //起送价
@@ -94,6 +95,7 @@ class CreateMainTable extends Migration
             $table->string('phone');                    //联系电话
             $table->enum('delivery_kind', $this->DELIVER_KIND);  //配送方式
             $table->boolean('support_cod');             //是否支持货到付款
+            $table->string('img')->nullable();          //店面图片
 
             //索引
             $table->index('name');

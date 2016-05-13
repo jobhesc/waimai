@@ -12,12 +12,18 @@
 */
 
 
-Route::group(['prefix'=>'/app/v2', 'middleware'=>'request_auth'], function(){
+Route::group(['prefix'=>'/app/v1'], function(){
 
     //不需要登录验证的接口
 //    Route::get('')
 
-    Route::match(['get', 'post'],'/sys/config', function(){
-        return view('welcome');
+    Route::match(['get', 'post'], '/get_shops', 'ShopsController@get_shops');
+
+    Route::match(['get', 'post'], '/', function(){
+        return App\User::paginate();
     });
+
+    //查询店铺分类
+    Route::match(['get', 'post'], '/get_categories', 'ShopCategoriesController@get_categories');
 });
+
